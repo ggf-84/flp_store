@@ -2,7 +2,7 @@
   "name": "tech-store",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ghostflp.github.io/react-store",
+  "homepage": "https://ghostflp.github.io/react-store/",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "gh-pages": "^2.0.1",
