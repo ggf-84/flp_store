@@ -8,21 +8,24 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "deploy": "gh-pages -d dev",
+    "predeploy":"npm run dev"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ghostflp/react-tech-store.git"
+    "url": "git+https://github.com/ghostflp/react-store.git"
   },
   "author": "ReactDeveloper",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ghostflp/react-tech-store/issues"
+    "url": "https://github.com/ghostflp/react-store/issues"
   },
-  "homepage": "https://github.com/ghostflp/react-tech-store#readme",
+  "homepage": "https://github.com/ghostflp/react-store",
   "dependencies": {
     "concurrently": "^4.1.0",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "gh-pages": "^2.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.0"
