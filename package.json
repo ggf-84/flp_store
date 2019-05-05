@@ -11,15 +11,9 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "deploy": "gh-pages -d dev"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ghostflp/react-store.git"
-  },
+
   "author": "ReactDeveloper",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ghostflp/react-store/issues"
-  },
   "homepage": "https://ghostflp.github.io/react-store",
   "dependencies": {
     "concurrently": "^4.1.0",
