@@ -9,8 +9,7 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "deploy": "gh-pages -d dev",
-    "predeploy":"npm run dev"
+    "deploy": "gh-pages -d dev"
   },
   "repository": {
     "type": "git",
@@ -21,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/ghostflp/react-store/issues"
   },
-  "homepage": "https://github.com/ghostflp/react-store",
+  "homepage": "https://ghostflp.github.io/react-store",
   "dependencies": {
     "concurrently": "^4.1.0",
     "express": "^4.16.4",
