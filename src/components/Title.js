@@ -24,6 +24,7 @@ const TitleWrapper = styled.nav`
         height:0.25rem;
         width:7rem;
         background:var(--primaryColor);
-        margin: ${props => props.center ? "0 auto" : "0"}
+        margin: ${props => props.center ? "0 auto" : "0"};
+        margin-bottom:2rem;
     }
 `;

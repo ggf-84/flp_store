@@ -8,6 +8,9 @@ import Products from './pages/ProductsPage'
 import Contact from './pages/ContactPage';
 import SingleProduct from './pages/SingleProductPage'
 import Cart from './pages/CartPage'
+import Login from './pages/LoginPage'
+import SignUp from './pages/SignUpPage'
+import ResetPassword from './pages/ResetPasswordPage'
 import Default from './pages/Default'
 
 import {Route, Switch} from 'react-router-dom'
@@ -31,6 +34,9 @@ function App() {
       <Route path="/products" exact component={Products} />
       <Route path="/product/:id" component={SingleProduct} />
       <Route path="/cart" component={Cart} />
+      <Route path="/login" component={Login} />
+      <Route path="/sign-up" component={SignUp} />
+      <Route path="/reset-password" component={ResetPassword} />
       <Route component={Default} />
     </Switch>
     <Footer/>
