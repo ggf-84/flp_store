@@ -6,6 +6,12 @@ const ProductContext = React.createContext();
 
 class ProductProvider extends Component{
     state = {
+        login: '',
+        email: '',
+        password: '',
+        firstname: '',
+        lastname: '',
+        resetPasswordInfo: '',
         sidebarOpen: false,
         cartOpen: false,
         cartItems: 0,
@@ -280,6 +286,20 @@ class ProductProvider extends Component{
         this.setState({filteredProducts: tempProducts});
     }
 
+    resetPassword = e => {
+        this.setState({
+            resetPasswordInfo: `Check your email addres to set a new password!`
+        })
+    }
+
+    logIn = e => {
+        console.log(this.state)
+    }
+
+    signUp = e => {
+        console.log(this.state)
+    }
+
     render(){
         return (
             <ProductContext.Provider 
@@ -295,7 +315,9 @@ class ProductProvider extends Component{
                     decrement: this.decrement,
                     removeItem: this.removeItem,
                     clearCart : this.clearCart,
-                    handleChange: this.handleChange
+                    handleChange: this.handleChange,
+                    resetPassword: this.resetPassword,
+                    logIn: this.logIn
                 }}
             >
                 {this.props.children}
