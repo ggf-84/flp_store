@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import { linkData } from './linkData'
 import { socialData } from './socialData'
 import { items } from './productData'
+import axios from 'axios'
+
 const ProductContext = React.createContext();
 
 class ProductProvider extends Component{
     state = {
+        token:'',
         login: '',
         email: '',
         password: '',
+        repeatPassword:'',
         firstname: '',
         lastname: '',
         resetPasswordInfo: '',
@@ -31,12 +35,14 @@ class ProductProvider extends Component{
         min:0,
         max:0,
         company:'all',
-        shipping:false
+        shipping:false,
+        fireRedirect:false
 
     }
 
     componentDidMount(){
-        this.setProducts(items);
+        this.getAuthData()
+        this.setProducts(items)
     }
 
     //set products
@@ -293,11 +299,92 @@ class ProductProvider extends Component{
     }
 
     logIn = e => {
-        console.log(this.state)
+        var data = {
+            'email': this.state.email,
+            'password':this.state.password
+        }
+
+        axios.post('/api/login', data)
+        .then(response => {
+            console.log('1',response.data.data);
+            if(response.status === 200){
+                this.setState({
+                    token: response.data.data.token, 
+                    firstname: response.data.data.firstname,
+                    fireRedirect: true
+                })
+
+                localStorage.setItem('auth_data', JSON.stringify({
+                    token:this.state.token,
+                    firstname:this.state.firstname,
+                    fireRedirect:this.state.fireRedirect
+                }));
+            }
+        }).catch((error) => {
+            console.log(error)
+        });
     }
 
     signUp = e => {
-        console.log(this.state)
+        // console.log(this.state)
+
+        // var token = this.state.token
+
+        // var config = {
+        //     headers: {
+        //         Authorization: `Bearer ${token}`,
+        //     }
+        // }
+
+        var data = {
+            'firstname': this.state.firstname,
+            'lastname': this.state.lastname,
+            'email': this.state.email,
+            'password':this.state.password,
+            'repeatPassword': this.state.repeatPassword
+        }
+
+        axios.post('/api/register', data)
+        .then(response => {
+            if(response.status === 200){
+                this.setState({
+                    token: response.data.token, 
+                    firstname: response.data.firstname,
+                    fireRedirect: true
+                })
+
+                localStorage.setItem('auth_data', JSON.stringify({
+                    token:this.state.token,
+                    firstname:this.state.firstname,
+                    fireRedirect:this.state.fireRedirect
+                }));
+            }
+        }).catch((error) => {
+            console.log(error)
+        });
+    }
+
+    logOut = () => {
+        this.setState({
+            token: '', 
+            firstname: '',
+            fireRedirect: false
+        })
+
+        localStorage.removeItem('auth_data');
+    }
+
+    getAuthData = () => {
+        if(localStorage.getItem('auth_data')){
+            var authData = JSON.parse(localStorage.getItem('auth_data'))
+            
+            this.setState({
+                token: authData.token,
+                firstname: authData.firstname,
+                fireRedirect: authData.fireRedirect
+            });
+            console.log(authData.token,this.state)
+        }
     }
 
     render(){
@@ -317,7 +404,9 @@ class ProductProvider extends Component{
                     clearCart : this.clearCart,
                     handleChange: this.handleChange,
                     resetPassword: this.resetPassword,
-                    logIn: this.logIn
+                    logIn: this.logIn,
+                    signUp: this.signUp,
+                    logOut: this.logOut
                 }}
             >
                 {this.props.children}
