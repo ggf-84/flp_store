@@ -1,11 +1,12 @@
 import React from 'react'
 import Title from '../Title'
 import {ProductConsumer} from '../../context/context'
+import { Redirect } from 'react-router'
 
 export default function SignUp() {
     return <ProductConsumer>
         {value => {
-            const {signUp,handleChange,email,password,repeatPassword,firstname,lastname} = value;
+            const {signUp,handleChange,email,password,repeatPassword,firstname,lastname,fireRedirect} = value;
             return (
             <section className="py-5">
                 <div className="container">
@@ -50,6 +51,7 @@ export default function SignUp() {
                                 className="form-control bg-primary text-white"
                                 onClick={() => signUp()}
                             />
+                            {fireRedirect && (<Redirect to={'/'}/>)}
                             </div>
                         </div>
                     </div>

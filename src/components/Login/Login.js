@@ -2,11 +2,12 @@ import React from 'react'
 import Title from '../Title'
 import {ProductConsumer} from '../../context'
 import {Link} from 'react-router-dom'
+import { Redirect } from 'react-router'
 
 export default function Login() {
     return <ProductConsumer>
         {value => {
-            const {resetPassword, logIn, email, password, handleChange} = value;
+            const {resetPassword, logIn, email, password, handleChange, fireRedirect} = value;
             return (
             <section className="py-5">
                 <div className="container">
@@ -33,6 +34,7 @@ export default function Login() {
                                 className="form-control bg-primary text-white"
                                 onClick={() => logIn()}
                             />
+                            {fireRedirect && (<Redirect to={'/'}/>)}
                             </div>
                             {/**forgot password */}
                             <div className="form-group">

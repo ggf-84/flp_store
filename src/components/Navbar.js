@@ -10,7 +10,7 @@ export default function Navbar() {
     <ProductConsumer>
       {
         value => {
-          const{ cartItems, handleSidebar, handleCart } = value;
+          const{ cartItems, handleSidebar, handleCart, token, firstname, logOut } = value;
 
           return (
             <NavWrapper itemsInCart={cartItems} >
@@ -18,8 +18,10 @@ export default function Navbar() {
                 <FaBars className="nav-icon" onClick={handleSidebar}/>
                 <img src={logo} alt="tech store logo"/>
                 <div className="nav-cart">
-                  <Link to="/login" className="sign">Login</Link>
-                  <Link to="/sign-up" className="sign">Sign Up</Link>
+                {token && (<span className="sign font-weight-bold">Hi, {firstname}!</span>)}
+                {token && (<span className="sign logout" onClick={() => logOut()}>Logout</span>)}
+                {!token && (<Link to="/login" className="sign">Login</Link>)}
+                {!token && (<Link to="/sign-up" className="sign">Sign Up</Link>)}
                 </div>
                 <div className="nav-cart">
                   <FaCartPlus className="nav-icon" onClick={handleCart}/>
@@ -75,7 +77,18 @@ const NavWrapper = styled.nav`
     display:block;
     text-align: right;
     margin-left: 1rem;
-    font-size: 0.95rem;
+    font-size: 0.75rem;
     color: var(--primaryColor);
+  }
+  .logout:hover{
+    text-decoration:underline;
+    transition: var(--mainTransition);
+    cursor: pointer;
+  }
+
+  @media (min-width: 567px) {
+    .nav-cart .sign{
+      font-size: 0.95rem;
+    }
   }
 `;
