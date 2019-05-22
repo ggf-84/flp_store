@@ -348,8 +348,8 @@ class ProductProvider extends Component{
         .then(response => {
             if(response.status === 200){
                 this.setState({
-                    token: response.data.token, 
-                    firstname: response.data.firstname,
+                    token: response.data.data.token, 
+                    firstname: response.data.data.firstname,
                     fireRedirect: true
                 })
 
