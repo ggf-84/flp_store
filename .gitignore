@@ -5,7 +5,7 @@
 /.vscode
 /.idea
 /.pnp
-/backend
+backend
 .pnp.js
 
 # testing
